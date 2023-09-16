@@ -90,10 +90,10 @@ toggleModal = () => {
       <ImageGallery images={images} onImageClick={this.handleGalleryItem}/>
       {isLoading && <Loader />}
       {needToShowLoadMore &&<Button onClick={this.getImages}/>}
-      {showModal&&<Modal onClose={this.toggleModal}>
-        <>
+      {showModal&&<Modal onClose={this.toggleModal} imgState={this.state.largeImage}>
+        {/* <>
           <img src={this.state.largeImage} alt="img" />
-        </>
+        </> */}
         </Modal>}
       <ToastContainer/>
       </div>
