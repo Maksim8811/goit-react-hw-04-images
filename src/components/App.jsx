@@ -21,11 +21,16 @@ const [error, setError] = useState(null)
 const [largeImage, setLargeImage] = useState("")
 const [totalHits, setTotalHits] = useState(0)
 
-// useEffect(() => {
-//   if(prevSearchName !== searchName) {
-//     getImages()
-//   }
-// })
+useEffect(() => {
+  
+  setSearchName(prevState=>{
+    if(prevState==="") {
+      console.log("!==")
+    }
+  })
+
+
+},[searchName])
 
 const getImages = async () => {
 
