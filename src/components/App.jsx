@@ -13,21 +13,17 @@ function App () {
 
 const [images, setImages] = useState([])
 const [searchName, setSearchName] = useState("")
-const [buttonShow, setButtonShow] = useState(false)
 const [galleryPage, setGalleryPage] = useState(1)
 const [isLoading, setIsLoading] = useState(false)
 const [showModal, setShowModal] = useState(false)
-const [error, setError] = useState(null)
 const [largeImage, setLargeImage] = useState("")
 const [totalHits, setTotalHits] = useState(0)
 
 useEffect(() => {
   
-  setSearchName(prevState=>{
-    if(prevState==="") {
-      console.log("!==")
-    }
-  })
+  if(searchName !== "") {
+    getImages()
+  }
 
 
 },[searchName])
@@ -46,7 +42,7 @@ try {
 
 catch (error) {
         console.log('Smth wrong with App fetch', error);
-        setError({ error })
+        
 
 } finally {
   setIsLoading(false)
@@ -85,96 +81,6 @@ return (
 )
 
 }
-// class App extends Component {
-
-//   state = {
-//     images: [],
-//     searchName: "",
-//     buttonShow: false,
-//     galleryPage: 1,
-//     isLoading: false,
-//     showModal: false,
-//     error: null,
-//     largeImage: "",
-//     totalHits: 0,
-//   }
-
-// componentDidUpdate(prevProps, prevState) {
-//   if(prevState.searchName !== this.state.searchName) {
-//     this.getImages()
-    
-//   }
-// }
-
-// onSubmitForm = nameSearch => {
-//   this.setState({
-//     searchName: `${nameSearch}`,
-//     images: [],
-//     galleryPage: 1,
-//   })
-// }
-
-// getImages = async () => {
-  
-//   const { searchName} = this.state
-//   this.setState({
-//     isLoading: true,
-//   })
-
-// try {
-//   const {totalHits, hits} = await fetchImages(searchName, (this.state.galleryPage))
-//   this.setState(prevState=>({
-//     images: [...prevState.images, ...hits],
-//     galleryPage: prevState.galleryPage + 1,
-//     totalHits: totalHits,
-//     searchName: searchName,
-//   }))
-// }
-// catch (error) {
-//         console.log('Smth wrong with App fetch', error);
-//         this.setState({ error })
-
-// } finally {
-//   this.setState({
-//     isLoading: false,
-//   })
-// }
-// }
-
-// handleGalleryItem = fullImageUrl => {
-//       this.setState({
-//         largeImage: fullImageUrl,
-//         showModal: true,
-//       });
-//     };
-
-// toggleModal = () => {
-//   this.setState(prevState=>({
-//     showModal:!prevState.showModal,
-//     largeImage: "",
-//   }))
-// }
-
-//   render () {
-//     const { images, isLoading, showModal, totalHits } = this.state;
-//     const needToShowLoadMore = totalHits>12 && totalHits>images.length
-    
-//     return (
-//       <div className="App">
-//       <Searchbar onSubmit={this.onSubmitForm}/>
-//       <ImageGallery images={images} onImageClick={this.handleGalleryItem}/>
-//       {isLoading && <Loader />}
-//       {needToShowLoadMore &&<Button onClick={this.getImages}/>}
-//       {showModal&&<Modal onClose={this.toggleModal} imgState={this.state.largeImage}>
-//         {/* <>
-//           <img src={this.state.largeImage} alt="img" />
-//         </> */}
-//         </Modal>}
-//       <ToastContainer/>
-//       </div>
-//       )
-//   }
-// }
 
 export default App
 
