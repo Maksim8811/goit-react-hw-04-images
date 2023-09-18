@@ -21,7 +21,7 @@ const [totalHits, setTotalHits] = useState(0)
 
 useEffect(() => {
   
-  if(searchName !== "") {
+  if(searchName) {
     getImages()
   }
 
